@@ -1,0 +1,52 @@
+﻿
+<!--
+Rozklad liczby na czynniki pierwsze
+(c) 2011 by Tomasz Lubinski
+www.algorytm.org
+-->
+
+<html>
+<body>
+<script type="text/javascript">
+function rozloz()
+{
+    // przypisanie obiektu pola tekstowego do zmiennej
+    var pole_liczba = document.forms['rozklad'].liczba;
+    // pobranie liczby
+    var liczba = pole_liczba.value;
+
+
+    // sprawdzenie czy pole zawiera jakas wartosc
+    if (!isNaN(liczba) && liczba > 1){
+        var wynik = "Czynniki pierwsze liczby " + liczba + " to:";
+        var i = 2;
+        var e = Math.floor(Math.sqrt(liczba));
+        while (i <= e) {
+           while ((liczba % i) == 0) {
+              wynik += " " + i;
+              liczba = Math.floor(liczba/i);
+              e = Math.floor(Math.sqrt(liczba));
+           }
+           i++;
+        }
+        if (liczba > 1) wynik += " " + liczba;
+	alert(wynik);
+    }
+    else
+    {
+        alert('Podano nieprawidłową wartość!');
+        pole_liczba.focus();
+    }
+    return false;
+}
+</script>
+
+<form id="rozklad" action=""><div>
+Podaj liczbę: 
+<input type="text" name="liczba"><br>
+<button onclick="return rozloz()">Rozłóż liczbę na czynniki pierwsze</button>
+</div>
+</form>
+</body>
+</html>
+
